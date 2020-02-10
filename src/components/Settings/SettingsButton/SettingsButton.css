@@ -1,0 +1,10 @@
+  .Button {
+    background-color: lightblue;
+    border: none;
+    color: white;
+    outline: none;
+    padding: 20px;
+    margin: 20px;
+    font-size: xx-large;
+    font-weight: bold;
+}
