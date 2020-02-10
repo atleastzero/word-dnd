@@ -31,10 +31,12 @@ class Interface extends Component {
 
     render() {
         return <Aux>
-            <SettingsButton />
+            <SettingsButton
+                settingsOpened={this.settingsHandler}
+            />
             <Settings 
                 show={this.state.showSettings}
-                closed={this.settingsCloseHandler}
+                settingsClosed={this.settingsCloseHandler}
             />
             {/* <RoomInfo
                 mainInfo={this.state.rooms[this.state.current_room].main}

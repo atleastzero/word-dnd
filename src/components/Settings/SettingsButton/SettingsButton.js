@@ -6,7 +6,7 @@ const settingsButton = props => {
     
     return (
         <button
-            onClick={props.clicked}
+            onClick={props.settingsOpened}
             className={classes.Button}
         >
             <i className="fas fa-cog"></i>

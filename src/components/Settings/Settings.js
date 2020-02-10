@@ -1,13 +1,13 @@
 import React from 'react';
 
 import Aux from '../../hoc/Aux'
-import Backdrop from './Settings.css'
+import Backdrop from '../Backdrop/Backdrop'
 
 import classes from './Settings.css';
 
 const settings = props => (
     <Aux>
-        {/* <Backdrop show={props.show} clicked={props.closed} /> */}
+        <Backdrop show={props.show} clicked={props.settingsClosed} />
         <div 
             className={classes.Settings}
             style={{
