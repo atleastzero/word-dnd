@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import SettingsButton from '../components/Settings/SettingsButton/SettingsButton'
-// import Settings from '../components/Settings/Settings'
+import Settings from '../components/Settings/Settings'
 // import RoomInfo from '/components/RoomInfo'
 // import Inventory from '/components/Settings'
 import Aux from '../hoc/Aux'
@@ -21,13 +21,21 @@ class Interface extends Component {
         showSettings: false
     }
 
+    settingsHandler = () => {
+        this.setState({showSettings: true});
+    }
+    
+    settingsCloseHandler = () => {
+        this.setState({showSettings: false});
+    }
+
     render() {
         return <Aux>
             <SettingsButton />
-            {/* <Settings 
+            <Settings 
                 show={this.state.showSettings}
-                closed={this.closeSettings}
-            /> */}
+                closed={this.settingsCloseHandler}
+            />
             {/* <RoomInfo
                 mainInfo={this.state.rooms[this.state.current_room].main}
             >

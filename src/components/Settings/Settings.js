@@ -7,7 +7,7 @@ import classes from './Settings.css';
 
 const settings = props => (
     <Aux>
-        <Backdrop show={props.show} clicked={props.closed} />
+        {/* <Backdrop show={props.show} clicked={props.closed} /> */}
         <div 
             className={classes.Settings}
             style={{
@@ -15,7 +15,7 @@ const settings = props => (
                 opacity: props.show ? '1' : '0'
             }}
         >
-            {props.children}
+            <button>Log Out</button>
         </div>
     </Aux>
 );
