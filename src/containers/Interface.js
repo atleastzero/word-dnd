@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 
+import Room from './Room/Room'
 import SettingsButton from '../components/Settings/SettingsButton/SettingsButton'
 import Settings from '../components/Settings/Settings'
-// import RoomInfo from '/components/RoomInfo'
+import RoomInfo from '../components/RoomInfo/RoomInfo'
 // import Inventory from '/components/Settings'
-import Aux from '../hoc/Aux'
 
 class Interface extends Component {
     state = {
@@ -30,7 +30,7 @@ class Interface extends Component {
     }
 
     render() {
-        return <Aux>
+        return <Room>
             <SettingsButton
                 settingsOpened={this.settingsHandler}
             />
@@ -38,19 +38,19 @@ class Interface extends Component {
                 show={this.state.showSettings}
                 settingsClosed={this.settingsCloseHandler}
             />
-            {/* <RoomInfo
+            <RoomInfo
                 mainInfo={this.state.rooms[this.state.current_room].main}
+                mainItem={this.state.rooms[this.state.current_room].mainItem}
             >
-                {this.state.rooms[this.state.current_room].mainItem}
             </RoomInfo>
-            <Inventory 
+            {/* <Inventory 
                 contents={this.state.inventory}
             /> */}
             {/* <Map 
                 room={this.state.current_room}
                 roomState={this.state.rooms[this.state.current_room].mainItem}
             /> */}
-        </Aux>
+        </Room>
     }
 }
 
