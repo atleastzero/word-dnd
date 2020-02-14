@@ -9,13 +9,21 @@ import classes from './Room.css';
 const Room = props => {
   const [dustbins, setDustbins] = useState([
     { accepts: [ItemTypes.SQUARE_CARD], lastDroppedItem: null },
-    { accepts: [ItemTypes.ARROW_CARD], lastDroppedItem: null },
   ])
-  const [inventory] = useState([
-    { name: 'dark', type: ItemTypes.SQUARE_CARD },
-    { name: 'scary', type: ItemTypes.SQUARE_CARD },
-    { name: 'shelf', type: ItemTypes.ARROW_CARD },
-  ])
+  let currentInventory = []
+  for(let i=0; i < props.inventory.length; i++) {
+    var dict = {}
+    if (props.inventory[i].charAt(0) === "[") {
+      dict.name = props.inventory[i].substring(1, props.inventory[i].length-1);
+      dict.type = props.SQUARE_CARD
+    } else {
+      dict.name = props.inventory[i].substring(1, props.inventory[i].length-1);
+      dict.type = props.ARROW_CARD
+    }
+    currentInventory.push(dict)
+  }
+  
+  const [inventory] = useState(currentInventory)
   const [droppedBoxNames, setDroppedBoxNames] = useState([])
   function isDropped(boxName) {
     return droppedBoxNames.indexOf(boxName) > -1
@@ -40,6 +48,7 @@ const Room = props => {
   )
   return (
     <div className={classes.Room}>
+      {props.children}
       <div style={{ overflow: 'hidden', clear: 'both' }}>
         {dustbins.map(({ accepts, lastDroppedItem }, index) => (
           <RoomInfo
@@ -48,15 +57,15 @@ const Room = props => {
             onDrop={item => handleDrop(index, item)}
             key={index}
             mainInfo={props.mainInfo}
-            main={props.main}
-          >
-              <Word 
-                name="dark"
-                type={ItemTypes.SQUARE_CARD}
-                isDropped={isDropped("dark")}
-                key={-1}
-              />
-          </RoomInfo>
+            mainItem={props.mainItem}
+          />
+          //     {/* <Word 
+          //       name="dark"
+          //       type={ItemTypes.SQUARE_CARD}
+          //       isDropped={isDropped("dark")}
+          //       key={-1}
+          //     />
+          // </RoomInfo> */}
         ))}
       </div>
 

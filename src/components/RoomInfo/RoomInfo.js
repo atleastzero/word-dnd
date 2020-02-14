@@ -12,9 +12,10 @@ const roomInfo = props => {
         <div className={classes.RoomInfo}>
             <h1>
                 {mainBeginning}
-                <Word>
-                    {"[" + props.mainItem + "]"}
-                </Word>
+                <Word
+                    name={props.mainItem.name}
+                    type={props.mainItem.type}
+                />
                 {mainEnd}
             </h1>
         </div>

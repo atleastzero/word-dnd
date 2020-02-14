@@ -2,15 +2,12 @@ import React, { Component } from 'react';
 import Room from './containers/Room/Room'
 import SettingsButton from './components/Settings/SettingsButton/SettingsButton'
 import Settings from './components/Settings/Settings'
-import RoomInfo from './components/RoomInfo/RoomInfo'
 import ReactDOM from 'react-dom'
 import { DndProvider } from 'react-dnd'
 import Backend from 'react-dnd-html5-backend'
-
-
+import ItemTypes from './components/Word/ItemTypes/ItemTypes';
 
 // import Inventory from '/components/Settings'
-
 class Interface extends Component {
     state = {
         inventory: [
@@ -20,7 +17,10 @@ class Interface extends Component {
         rooms: {
             0: {
                 main: "You are in a [] room.",
-                mainItem: "dark"
+                mainItem: {
+                    name: "dark",
+                    type: ItemTypes.SQUARE_CARD
+                }
             }
         },
         showSettings: false
@@ -38,6 +38,7 @@ class Interface extends Component {
         return <div className="App">
 			<DndProvider backend={Backend}>
                 <Room
+                    inventory={this.state.inventory}
                     mainInfo={this.state.rooms[this.state.current_room].main}
                     mainItem={this.state.rooms[this.state.current_room].mainItem}
                 >
@@ -48,11 +49,6 @@ class Interface extends Component {
                         show={this.state.showSettings}
                         settingsClosed={this.settingsCloseHandler}
                     />
-                    <RoomInfo
-                        mainInfo={this.state.rooms[this.state.current_room].main}
-                        mainItem={this.state.rooms[this.state.current_room].mainItem}
-                    >
-                    </RoomInfo>
                     {/* <Inventory 
                         contents={this.state.inventory}
                     /> */}
