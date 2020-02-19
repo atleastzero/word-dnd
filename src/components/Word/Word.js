@@ -1,16 +1,22 @@
-import React from 'react';
+import React from 'react'
+import { useDrag } from 'react-dnd'
 
 import ItemTypes from './ItemTypes/ItemTypes'
 
-import classes from './Word.css'
+// import classes from './Word.css'
 
-const word = props => {
-    
-    let viewName = props.type === ItemTypes.ARROW_CARD ? "<" + props.name + ">" : "[" + props.name + "]"
-
+const Word = ({ name, type, isDropped, removable, hasDefault }) => {
+    const [{ opacity }, drag] = useDrag({
+      item: { name, type },
+      collect: monitor => ({
+        opacity: monitor.isDragging() ? 0.4 : 1,
+      }),
+    })
+    let viewName = type === ItemTypes.ARROW_CARD ? "<" + name + ">" : "[" + name + "]"
     return (
-        <span className={classes.Word}>{viewName}</span>
-    );
-};
-
-export default word;
+      <div ref={drag} style={{ opacity }}>
+        {viewName}
+      </div>
+    )
+  }
+  export default Word
