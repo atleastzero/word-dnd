@@ -6,6 +6,7 @@ import Settings from './components/Settings/Settings'
 import ReactDOM from 'react-dom'
 import { DndProvider } from 'react-dnd'
 import Backend from 'react-dnd-html5-backend'
+import ItemTypes from './components/Word/ItemTypes/ItemTypes';
 
 
 
@@ -21,6 +22,7 @@ class Interface extends Component {
             0: {
                 main: "You are in a [] room.",
                 mainItem: null,
+                mainItemType: ItemTypes.SQUARE_CARD, 
                 mainDefault: "dark"
             }
         },
@@ -41,6 +43,7 @@ class Interface extends Component {
                 <Room
                     mainInfo={this.state.rooms[this.state.current_room].main}
                     mainItem={this.state.rooms[this.state.current_room].mainItem}
+                    mainItemType={this.state.rooms[this.state.current_room].mainItemType}
                     mainDefault={this.state.rooms[this.state.current_room].mainDefault}
                 >
                     <SettingsButton

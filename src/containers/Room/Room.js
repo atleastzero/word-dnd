@@ -49,6 +49,7 @@ const Room = props => {
             key={index}
             mainInfo={props.mainInfo}
             mainItem={props.mainItem}
+            mainItemType={props.mainItemType}
             mainDefault={props.mainDefault}
           >
           </RoomInfo>

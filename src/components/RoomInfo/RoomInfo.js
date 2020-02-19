@@ -4,7 +4,7 @@ import classes from './RoomInfo.css';
 
 import Word from '../Word/Word'
 
-const RoomInfo = ({ mainItem, mainInfo, mainDefault }) => {
+const RoomInfo = ({ mainItem, mainInfo, mainDefault, mainItemType }) => {
     var mainBeginning = mainInfo.substring(0, mainInfo.indexOf("["))
     var mainEnd = mainInfo.substring(mainInfo.indexOf("]")+1)
     var name, removable, hasDefault = false
@@ -26,7 +26,7 @@ const RoomInfo = ({ mainItem, mainInfo, mainDefault }) => {
                 {mainBeginning}
                 <Word
                     name={name}
-                    type={mainItem}
+                    type={mainItemType}
                     removable={removable}
                     isDropped={true}
                     key={-1}

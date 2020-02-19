@@ -6,6 +6,7 @@ import ItemTypes from './ItemTypes/ItemTypes'
 // import classes from './Word.css'
 
 const Word = ({ name, type, isDropped, removable, hasDefault }) => {
+    console.log(type)
     const [{ opacity }, drag] = useDrag({
       item: { name, type },
       collect: monitor => ({
