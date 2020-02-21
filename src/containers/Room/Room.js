@@ -11,11 +11,7 @@ const Room = props => {
     { accepts: [ItemTypes.SQUARE_CARD], lastDroppedItem: null },
     // { accepts: [ItemTypes.ARROW_CARD], lastDroppedItem: null },
   ])
-  const [inventory] = useState([
-    { name: 'dark', type: ItemTypes.SQUARE_CARD },
-    { name: 'scary', type: ItemTypes.SQUARE_CARD },
-    { name: 'shelf', type: ItemTypes.ARROW_CARD },
-  ])
+  const [inventory] = useState(props.inventory)
   const [droppedBoxNames, setDroppedBoxNames] = useState([])
   function isDropped(boxName) {
     return droppedBoxNames.indexOf(boxName) > -1
@@ -41,6 +37,7 @@ const Room = props => {
   return (
     <div className={classes.Room}>
       <div style={{ overflow: 'hidden', clear: 'both' }}>
+        {props.children}
         {dustbins.map(({ accepts, lastDroppedItem }, index) => (
           <RoomInfo
             accept={accepts}
@@ -51,8 +48,8 @@ const Room = props => {
             mainItem={props.mainItem}
             mainItemType={props.mainItemType}
             mainDefault={props.mainDefault}
-          >
-          </RoomInfo>
+            wordChanged={props.wordChanged}
+          />
         ))}
       </div>
 

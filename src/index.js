@@ -14,11 +14,23 @@ import ItemTypes from './components/Word/ItemTypes/ItemTypes';
 
 class Interface extends Component {
     state = {
-        inventory: [
-            "[light]"
+        start_inventory: [
+            { name: 'login', type: ItemTypes.CIRCLE_CARD },
+            { name: 'signup', type: ItemTypes.CIRCLE_CARD },
         ],
-        current_room: 0,
+        inventory: [
+            { name: 'light', type: ItemTypes.SQUARE_CARD },
+            { name: 'scary', type: ItemTypes.SQUARE_CARD },
+            { name: 'shelf', type: ItemTypes.ARROW_CARD },
+        ],
+        current_room: 1000,
         rooms: {
+            1000: {
+                main: "I would like to [].",
+                mainItem: null,
+                mainItemType: ItemTypes.CIRCLE_CARD,
+                mainDefault: "do nothing"
+            },
             0: {
                 main: "You are in a [] room.",
                 mainItem: null,
@@ -37,7 +49,19 @@ class Interface extends Component {
         this.setState({showSettings: false});
     }
 
+    // wordChanged = (originalWord, newWord) => {
+    //     var inventory =  this.state.inventory
+    //     if (originalWord === null) {
+
+    //     }
+    // }
+
     render() {
+        var inventory = this.state.inventory
+        if (this.state.current_room === 1000) {
+            inventory = this.state.start_inventory
+        }
+
         return <div className="App">
 			<DndProvider backend={Backend}>
                 <Room
@@ -45,6 +69,8 @@ class Interface extends Component {
                     mainItem={this.state.rooms[this.state.current_room].mainItem}
                     mainItemType={this.state.rooms[this.state.current_room].mainItemType}
                     mainDefault={this.state.rooms[this.state.current_room].mainDefault}
+                    wordChanged={this.wordChanged}
+                    inventory={inventory}
                 >
                     <SettingsButton
                         settingsOpened={this.settingsHandler}
